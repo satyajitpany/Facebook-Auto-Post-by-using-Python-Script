@@ -1,0 +1,35 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from time import sleep
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.common.exceptions import NoSuchElementException
+import time
+import pyautogui
+
+driver = webdriver.Firefox(executable_path=r'H:\Whatsapp\geckodriver\geckodriver.exe')
+driver.get('https://www.facebook.com/login.php?login_attempt=1&lwv=110')
+print("Opened facebook...")
+email = driver.find_element_by_xpath("//input[@id='email' or @name='email']")
+email.send_keys('sjena0999@gmail.com')
+print("email entered...")
+password = driver.find_element_by_xpath("//input[@id='pass']")
+password.send_keys('Sjena@09')
+print("Password entered...")
+button = driver.find_element_by_xpath("//button[@id='loginbutton']")
+button.click()
+print("facebook opened")
+status = driver.find_element(By.XPATH,"//*[@name='xhpc_message']")
+time.sleep(5)
+status.send_keys("Facebook Automation Testing");
+time.sleep(5)
+print("Status trying")
+pyautogui.keyDown('ctrl')
+pyautogui.keyDown('enter')
+pyautogui.keyUp('enter')
+pyautogui.keyUp('ctrl')
+time.sleep(10)
+print("successfully posted")
